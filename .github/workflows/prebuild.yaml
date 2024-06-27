@@ -28,8 +28,6 @@ jobs:
         canvas_tag: ["v2.11.2"] # e.g. "v2.6.1"
     name: ${{ matrix.canvas_tag}}, Node.js ${{ matrix.node }}, Linux
     runs-on: ubuntu-latest
-    container:
-      image: chearon/canvas-prebuilt:7
     env:
       CANVAS_VERSION_TO_BUILD: ${{ matrix.canvas_tag }}
     steps:
@@ -100,7 +98,7 @@ jobs:
         node: [18, 20]
         canvas_tag: ["v2.11.2"] # e.g. "v2.6.1"
     name: ${{ matrix.canvas_tag}}, Node.js ${{ matrix.node }}, macOS
-    runs-on: macos-latest
+    runs-on: macos-13
     env:
       CANVAS_VERSION_TO_BUILD: ${{ matrix.canvas_tag }}
     steps:
@@ -165,7 +163,7 @@ jobs:
       matrix:
         node: [18, 20]
         canvas_tag: ["v2.11.2"] # e.g. "v2.6.1"
-    name: ${{ matrix.canvas_tag}}, Node.js ${{ matrix.node }}, macOS
+    name: ${{ matrix.canvas_tag}}, Node.js ${{ matrix.node }}, macOS Arm
     runs-on: macos-14
     env:
       CANVAS_VERSION_TO_BUILD: ${{ matrix.canvas_tag }}
@@ -195,7 +193,6 @@ jobs:
 
       - name: Test binary
         run: |
-          brew uninstall --force cairo pango librsvg giflib harfbuzz
           npm test
 
       - name: Make bundle
